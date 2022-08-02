@@ -1,9 +1,8 @@
 {
   "name": "@keliu/openapi-gen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "repository": {
-  },
+  "repository": {},
   "license": "MIT",
   "author": "keliu",
   "main": "dist/index.js",
