@@ -1,13 +1,11 @@
 {
-  "name": "@umijs/openapi",
-  "version": "1.7.0",
+  "name": "@keliu/openapi-gen",
+  "version": "1.0.0",
   "description": "",
   "repository": {
-    "type": "git",
-    "url": "git+git@github.com:chenshuai2144/openapi2typescript.git"
   },
   "license": "MIT",
-  "author": "chenshuai2144",
+  "author": "keliu",
   "main": "dist/index.js",
   "files": [
     "dist",
