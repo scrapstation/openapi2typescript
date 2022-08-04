@@ -4,9 +4,9 @@ declare namespace {{ namespace }} {
   {% for type in list -%}
     {%- if type.props.length %}
       {%- if type.isEnum %}
-        enum {{ type.typeName | safe }} 
+        export enum {{ type.typeName | safe }} 
       {%- else %}
-        type {{ type.typeName | safe }} =
+        export type {{ type.typeName | safe }} =
       {%- endif %}
         {%- for prop in type.props %}
           {%- if prop.length %}
@@ -29,9 +29,9 @@ declare namespace {{ namespace }} {
         {%- endfor %}
       {%- else %}
       {%- if type.isEnum  %}
-        enum {{ type.typeName | safe }} {{ type.type }};
+        export enum {{ type.typeName | safe }} {{ type.type }};
       {%- else %}
-        type {{ type.typeName | safe }} = {{ type.type }};
+        export type {{ type.typeName | safe }} = {{ type.type }};
       {%- endif %}
     {%- endif %}
   {% endfor %}
