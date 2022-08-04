@@ -1,36 +1,40 @@
+{%- if namespace %}
 declare namespace {{ namespace }} {
-{% for type in list -%}
-  {%- if type.props.length %}
-    {%- if type.isEnum %}
-      enum {{ type.typeName | safe }} 
-    {%- else %}
-       type {{ type.typeName | safe }} =
-    {%- endif %}
-      {%- for prop in type.props %}
-        {%- if prop.length %}
-          {{ '' if loop.first === true or prop.length==0 else ' & '  }}
-          {%- for p in prop %}
-            {%- if not p.name %}
-              {{ '' if loop.first === true or prop.length==0 else ' & '  }}
-              {{p.type}} 
-              &
-            {%- endif %}
-          {%- endfor %}
-          {
+{%- endif %}
+  {% for type in list -%}
+    {%- if type.props.length %}
+      {%- if type.isEnum %}
+        enum {{ type.typeName | safe }} 
+      {%- else %}
+        type {{ type.typeName | safe }} =
+      {%- endif %}
+        {%- for prop in type.props %}
+          {%- if prop.length %}
+            {{ '' if loop.first === true or prop.length==0 else ' & '  }}
             {%- for p in prop %}
-              {%- if p.name %}
-                '{{ p.name }}'{{ '' if p.required else '?' }}: {{ p.type | safe }};
+              {%- if not p.name %}
+                {{ '' if loop.first === true or prop.length==0 else ' & '  }}
+                {{p.type}} 
+                &
               {%- endif %}
             {%- endfor %}
-          }
-        {%- endif %}
-      {%- endfor %}
-    {%- else %}
-    {%- if type.isEnum  %}
-      enum {{ type.typeName | safe }} {{ type.type }};
-    {%- else %}
-      type {{ type.typeName | safe }} = {{ type.type }};
+            {
+              {%- for p in prop %}
+                {%- if p.name %}
+                  '{{ p.name }}'{{ '' if p.required else '?' }}: {{ p.type | safe }};
+                {%- endif %}
+              {%- endfor %}
+            }
+          {%- endif %}
+        {%- endfor %}
+      {%- else %}
+      {%- if type.isEnum  %}
+        enum {{ type.typeName | safe }} {{ type.type }};
+      {%- else %}
+        type {{ type.typeName | safe }} = {{ type.type }};
+      {%- endif %}
     {%- endif %}
-  {%- endif %}
-{% endfor %}
+  {% endfor %}
+{%- if namespace %}
 }
+{%- endif %}
