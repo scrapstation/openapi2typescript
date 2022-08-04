@@ -323,7 +323,7 @@ class ServiceGenerator {
     }
 
     // 生成 ts 类型声明
-    this.genFileFromTemplate('typings.d.ts', 'interface', {
+    this.genFileFromTemplate('typings.ts', 'interface', {
       namespace: this.config.namespace,
       // namespace: 'API',
       list: this.getInterfaceTP(),
