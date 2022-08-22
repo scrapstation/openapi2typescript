@@ -343,6 +343,7 @@ class ServiceGenerator {
           requestImportStatement: this.config.requestImportStatement,
           disableTypeCheck: false,
           ...tp,
+          types:tp.list.flatMap(x=>[x.body?.type,x.response.type]).filter((v, i, a) => a.indexOf(v) === i).join(",")
         },
       );
       prettierError.push(hasError);
