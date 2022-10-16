@@ -335,6 +335,7 @@ class ServiceGenerator {
     this.getServiceTP().forEach((tp) => {
       // 根据当前数据源类型选择恰当的 controller 模版
       const template = 'serviceController';
+      const innerTypes = ['any', 'number', 'Date', 'string', 'boolean'];
       const hasError = this.genFileFromTemplate(
         this.getFinalFileName(`${tp.className}.ts`),
         template,
@@ -346,7 +347,7 @@ class ServiceGenerator {
           types: tp.list
             .flatMap((x) => [x.body?.type, x.response.type])
             .filter((v, i, a) => a.indexOf(v) === i)
-            .filter((x) => x != null && x != 'any')
+            .filter((x) => x != null && innerTypes.findIndex((f) => f == x) == -1)
             .join(','),
         },
       );
