@@ -345,7 +345,7 @@ class ServiceGenerator {
           disableTypeCheck: false,
           ...tp,
           types: tp.list
-            .flatMap((x) => [x.body?.type, x.response.type,x.typeName])
+            .flatMap((x) => [x.body?.type, x.response.type,x.hasParams?x.typeName:null])
             .filter((v, i, a) => a.indexOf(v) === i)
             .filter((x) => x != null && innerTypes.findIndex((f) => f == x) == -1)
             .join(','),
