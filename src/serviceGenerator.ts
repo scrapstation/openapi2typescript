@@ -348,6 +348,7 @@ class ServiceGenerator {
             .flatMap((x) => [x.body?.type, x.response.type,x.hasParams?x.typeName:null])
             .filter((v, i, a) => a.indexOf(v) === i)
             .filter((x) => x != null && innerTypes.findIndex((f) => f == x) == -1)
+            .map(x=>x.replace("[]",""))
             .join(','),
         },
       );
