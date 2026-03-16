@@ -347,8 +347,8 @@ class ServiceGenerator {
           types: tp.list
             .flatMap((x) => [x.body?.type, x.response.type,x.hasParams?x.typeName:null])
             .filter((v, i, a) => a.indexOf(v) === i)
+            .map(x=>x?.replace("[]",""))
             .filter((x) => x != null && innerTypes.findIndex((f) => f == x) == -1)
-            .map(x=>x.replace("[]",""))
             .join(','),
         },
       );
